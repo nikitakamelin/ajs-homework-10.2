@@ -16,17 +16,13 @@ export default class Team {
     return [...this.members];
   }
 
-  //* -------ИТЕРАТОР----------------------
-  [Symbol.iterator]() {
-    let index = -1;
+  //* -------ГЕНЕРАТОР----------------------
+  * [Symbol.iterator]() {
     const data = this.toArray();
-
-    return {
-      next: () => ({
-        value: data[++index],
-        done: !(index in data),
-      }),
-    };
-  }
+	 
+    for (let i = 0; i < data.length; i++) {
+      yield data[i];
+    }
+ 	}
   //*------------------------------------
 }
